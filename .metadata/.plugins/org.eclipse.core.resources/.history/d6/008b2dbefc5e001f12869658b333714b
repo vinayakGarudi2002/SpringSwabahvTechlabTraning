@@ -1,0 +1,15 @@
+package com.techlab.service;
+
+public interface LoanService {
+List<Loan> getAllLoans();
+	
+	Loan getLoanById(int LoanId);
+//	
+	List<Loan> getLoanByStatus(LoanStatus status);
+	
+	void addLoan(Loan Loan);
+	
+	void deleteLoanById(int LoanId);
+	
+	void updateLoan(Loan Loan);
+}

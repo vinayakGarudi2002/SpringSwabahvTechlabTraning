@@ -1,0 +1,53 @@
+package com.techlab.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.techlab.entity.Payment;
+import com.techlab.entity.PaymentStatus;
+
+@Service
+public class PaymentServiceImp implements PaymentService {
+	
+	@Autowired
+	private PaymentService paymentService;
+
+	@Override
+	public List<Payment> getAllPayments() {
+		// TODO Auto-generated method stub
+		return paymentService.getAllPayments();
+	}
+
+	@Override
+	public Payment getPaymentById(int paymentId) {
+		// TODO Auto-generated method stub
+		return paymentService.getPaymentById(paymentId);
+	}
+
+	@Override
+	public void addPayment(Payment payment) {
+		// TODO Auto-generated method stub
+		paymentService.addPayment(payment);
+	}
+
+	@Override
+	public void deletePaymentById(int paymentId) {
+		// TODO Auto-generated method stub
+		paymentService.deletePaymentById(paymentId);
+	}
+
+	@Override
+	public void updatePayment(Payment payment) {
+		// TODO Auto-generated method stub
+		paymentService.updatePayment(payment);
+	}
+
+	@Override
+	public List<Payment> getPaymentsByStatus(PaymentStatus status) {
+		// TODO Auto-generated method stub
+		return paymentService.getPaymentsByStatus(status);
+	}
+
+}

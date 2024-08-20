@@ -1,0 +1,5 @@
+package com.techlab.entity;
+
+public class Employee {
+
+}

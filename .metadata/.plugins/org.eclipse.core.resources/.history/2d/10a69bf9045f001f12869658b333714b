@@ -1,0 +1,25 @@
+package com.techlab.repository;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.techlab.entity.Payment;
+import com.techlab.entity.PaymentStatus;
+
+@Repository
+public interface PaymentRepository {
+
+	List<Payment> getAllPayments();
+
+	Payment getPaymentById(int paymentId);
+
+	void addPayment(Payment payment);
+
+	void deletePaymentById(int paymentId);
+
+	void updatePayment(Payment payment);
+
+	List<Payment> getPaymentsByStatus(PaymentStatus status);
+
+}

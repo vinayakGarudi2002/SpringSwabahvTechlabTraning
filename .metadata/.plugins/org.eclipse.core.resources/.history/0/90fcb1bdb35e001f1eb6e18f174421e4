@@ -1,0 +1,16 @@
+package com.techlab.repository;
+
+import java.util.List;
+
+import com.techlab.entity.Employee;
+
+public class EmployeeRepositoryImpl implements EmployeeRepository {
+
+	@Override
+	public List<Employee> getAllEmployees() {
+		// TODO Auto-generated method stub
+		TypedQuery<Employee> query=manager.createQuery("select s  from employees s",Employee.class);
+		return query.getResultList();
+	}
+
+}
