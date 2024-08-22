@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="PaymentMode"/>
+		<item key="selection" value="errorResponse"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="true"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="studentErrorResponse"/>
+			<item value="StudentErrorRespone"/>
 			<item value="PaymentMode"/>
 			<item value="paymentService"/>
 			<item value="Customer"/>
 		</list>
 		<list key="replacehistory">
+			<item value="errorResponse"/>
+			<item value="ErrorRespone"/>
 			<item value="pymentRepo"/>
 			<item value="Loan"/>
 		</list>
