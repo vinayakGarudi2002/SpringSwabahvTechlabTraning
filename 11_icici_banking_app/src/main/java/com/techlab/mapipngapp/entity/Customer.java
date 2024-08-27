@@ -9,6 +9,9 @@ import lombok.Setter;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

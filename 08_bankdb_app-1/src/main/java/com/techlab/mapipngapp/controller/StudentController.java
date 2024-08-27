@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techlab.mapipngapp.dto.AddresSchema;
+import com.techlab.mapipngapp.dto.PageResponse;
 import com.techlab.mapipngapp.dto.StudentDto;
 import com.techlab.mapipngapp.entity.Addres;
 import com.techlab.mapipngapp.entity.Student;
 import com.techlab.mapipngapp.service.StudentService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/studentapp")
@@ -26,9 +29,9 @@ public class StudentController {
 	private StudentService studentService;
 	
 	@GetMapping("/students")
-	public ResponseEntity<List<StudentDto>> getAllStudents() {
+	public ResponseEntity<PageResponse<StudentDto>> getAllStudents(@RequestParam int pageNo , @RequestParam int pageSize) {
 
-	    return ResponseEntity.ok(studentService.getAllStudentDto());
+	    return ResponseEntity.ok(studentService.getAllStudentDto(pageNo,pageSize));
 	    
 	    
 	}
@@ -42,7 +45,7 @@ public class StudentController {
 	}
 	
 	@PostMapping("/students/adddres")
-	public ResponseEntity<Addres> updateStudentAddres(@RequestParam int rollnumber, @RequestBody AddresSchema addres) {
+	public ResponseEntity<Addres> updateStudentAddres(@RequestParam int rollnumber, @RequestBody @Valid AddresSchema addres) {
 
 	    return ResponseEntity.ok(studentService.updateAddresById(rollnumber, addres));
 	    
@@ -51,8 +54,26 @@ public class StudentController {
 
 	
 	@PostMapping("/students")
-	public Student addUpdateStudent(@RequestBody Student student) {
+	public Student addUpdateStudent(@RequestBody @Valid Student student) {
 		return studentService.addUpdateStudent(student);
 	}
+	
+//	@GetMapping("/students")
+//	public ResponseEntity<PageResponse<StudentDto>> getAllStudents(@RequestParam("pageNo") int pageNo,@RequestParam("pageSize") int pageSize){
+//            return ResponseEntity.ok(studentService.getAllStudents(pageNo, pageSize));		
+//	}
+	
+	@GetMapping("/students/{rollnumber}")
+	public ResponseEntity<StudentDto> getStudentByRollnumber(@PathVariable("rollnumber") int rollnumber) {
+	    System.out.println(rollnumber);
+	    // Your logic here
+	    return ResponseEntity.ok(studentService.getStudentByRollNumber(rollnumber));
+	}
+	
+	@PostMapping("students/courses")
+	public ResponseEntity<StudentDto> assignCoursesToStudent(@RequestParam("rollnumber") int rollnumber,@RequestBody List<Integer> courseIds){
+		return ResponseEntity.ok(studentService.assignCourses(rollnumber, courseIds));
+	}
+	
 
 }

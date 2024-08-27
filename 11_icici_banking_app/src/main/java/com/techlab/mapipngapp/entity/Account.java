@@ -3,6 +3,7 @@ package com.techlab.mapipngapp.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,9 @@ import lombok.Setter;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -41,4 +45,11 @@ public class Account {
 
     @OneToMany(mappedBy = "receiverAccount", cascade = CascadeType.ALL)
     private List<Transaction> receivedTransactions;
+
+	@Override
+	public String toString() {
+		return "Account [accountId=" + accountId + ", accountNumber=" + accountNumber + ", balance=" + balance + "]";
+	}
+    
+    
 }

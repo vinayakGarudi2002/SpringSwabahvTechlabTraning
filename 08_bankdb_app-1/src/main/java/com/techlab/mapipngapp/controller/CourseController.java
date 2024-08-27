@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techlab.mapipngapp.dto.CourseDto;
+import com.techlab.mapipngapp.dto.StudentDto;
 import com.techlab.mapipngapp.entity.Course;
 import com.techlab.mapipngapp.service.CourseService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/studentapp")
@@ -23,7 +26,7 @@ public class CourseController {
 	private CourseService courseService;
 	
 	@PostMapping("/courses")
-	public ResponseEntity<Course> addNewCourse(@RequestBody CourseDto courseDto){
+	public ResponseEntity<Course> addNewCourse(@RequestBody @Valid CourseDto courseDto){
 		
 		return ResponseEntity.ok(courseService.addCourse(courseDto));
 	}
@@ -35,7 +38,10 @@ public class CourseController {
 	}
 	
 	
-	
+	@PostMapping("courses/student")
+	public ResponseEntity<CourseDto> assignCoursesToStudent(@RequestParam int courseId,@RequestBody List<Integer> rollnumbers){
+		return ResponseEntity.ok(courseService.assignStudentsToCourse(courseId, rollnumbers));
+	}
 	
 
 }
