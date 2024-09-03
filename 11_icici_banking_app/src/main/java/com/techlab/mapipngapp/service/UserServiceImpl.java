@@ -104,14 +104,14 @@ public class UserServiceImpl implements UserService{
 	public UserDto userLogin(String email, String password) {
 		// TODO Auto-generated method stub
 		if(profileRepository.findByEmailId(email)==null) {
-			throw new RuntimeException("email or password ");
+			throw new RuntimeException("email or password is Incorect");
 		}
 		Profile profile = profileRepository.findByEmailId(email);
 		
 		User user = userRepo.findByProfile(profile);
 		
 		if(!user.getPassword().equals(password)) {
-			throw new RuntimeException("email or password ");
+			throw new RuntimeException("email or password is Incorrect");
 		}
 		return userOperation.toUserDtoMapper(user);
 	}

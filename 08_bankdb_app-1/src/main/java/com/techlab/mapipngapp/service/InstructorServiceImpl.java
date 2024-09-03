@@ -173,7 +173,9 @@ public class InstructorServiceImpl implements InstructorService{
 		instructorRepo.findById(instructorId).orElseThrow(()-> new NotFoundException("Instructor not found witg given id: "+instructorId) );
 		
 		
-		return instructorRepo.findById(instructorId).get();
+		Instructor instructor=  instructorRepo.findById(instructorId).get();
+		
+		return instructor;
 	}
 	
 private CourseDto toCourseDtoMapper(Course course) {

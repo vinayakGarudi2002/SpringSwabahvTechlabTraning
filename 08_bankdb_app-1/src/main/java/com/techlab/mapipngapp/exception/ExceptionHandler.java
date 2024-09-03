@@ -57,6 +57,7 @@ public class ExceptionHandler {
 	@org.springframework.web.bind.annotation.ExceptionHandler
 	public ResponseEntity<ErrorRespone> notFoundException(NotFoundException exception){
 		
+		
 		return new ResponseEntity<ErrorRespone>(getErrorRespone(exception),HttpStatus.BAD_REQUEST);
 	}
 	

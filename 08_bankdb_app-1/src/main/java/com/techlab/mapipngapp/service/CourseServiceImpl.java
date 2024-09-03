@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +20,10 @@ import com.techlab.mapipngapp.repository.CourseRepository;
 import com.techlab.mapipngapp.repository.InstructorRepository;
 import com.techlab.mapipngapp.repository.StudentRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class CourseServiceImpl implements CourseService{
 
 	
@@ -29,6 +35,8 @@ public class CourseServiceImpl implements CourseService{
 	
 	@Autowired
 	private InstructorRepository instructorRepo;
+	
+	private static final Logger logger= LoggerFactory.getLogger(CourseServiceImpl.class);
 	@Override
 	public Course addCourse(CourseDto corseDto) {
 		// TODO Auto-generated method stub
@@ -37,7 +45,9 @@ public class CourseServiceImpl implements CourseService{
 		course.setCourseName(corseDto.getCourseName());
 		course.setDuration(corseDto.getDuration());
 		course.setFees(corseDto.getFees());
-		return courseRepo.save(course);
+		Course dbCourse= courseRepo.save(course);
+		logger.info("Course added with id: "+ course.getCourseId());
+		return dbCourse;
 	}
 	@Override
 	public Course alloacteInstructorToCourse(int courseId, int instructorId) {
@@ -61,7 +71,9 @@ public class CourseServiceImpl implements CourseService{
 		
 		dbInstructor = optionalInstructor.get();
 		dbCourse.setInstructor(dbInstructor);
-		return courseRepo.save(dbCourse);
+		Course course= courseRepo.save(dbCourse);
+		
+		return course;
 	}
 	
 	private CourseDto toCourseDtoMapper(Course course) {

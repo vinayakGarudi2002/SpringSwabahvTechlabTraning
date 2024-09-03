@@ -145,6 +145,9 @@ public class AccountOperation {
 	private TransactionResponseDto transfer(long senderAccountNumber,long reciverAccountNumber , double amount) {
 		isAccountExist(senderAccountNumber);
 		isAccountExist(reciverAccountNumber);
+		if(senderAccountNumber == reciverAccountNumber) {
+			throw new RuntimeException("Invalid Transaction , can transfer to samr account");
+		}
 		
 		if(amount<0) {
 			throw new RuntimeException("amount need atleast 1 for credit operation");
